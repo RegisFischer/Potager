@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import fr.formation.potager.bll.BLLException;
 import fr.formation.potager.bll.plantesCarre.PlantationException;
 import fr.formation.potager.bll.plantesCarre.PlanteCarreManager;
+import fr.formation.potager.bll.potager.PotagerException;
 import fr.formation.potager.bll.potager.PotagerManager;
 import fr.formation.potager.bo.Carre;
 import fr.formation.potager.bo.Plante;
@@ -36,23 +37,45 @@ public class PotagerApplication implements CommandLineRunner{
 	}
 
 	private void testNominal() {
-		Potager monPotager = new Potager("Ecole ENI", "monPotager", 20,"Quimper");
+		Potager monPotager = new Potager("Ecole ENI", "monPotager", 200,"Quimper");
 		
-		Plante unePlante = new Plante("tomatier",TypePlante.FRUIT,"Marmande",12);
-		Carre unCarre = new Carre(monPotager,4,TypeSol.ARGILE,typeExposition.SUD_EST);
+		Plante tomatier = new Plante("tomatier",TypePlante.FRUIT,"Marmande",2);
+		Plante fraisier = new Plante("fraisier",TypePlante.FRUIT,"Plougastel",4);
+		Carre unCarre = new Carre(16,TypeSol.ARGILE,typeExposition.SUD_EST);
+		Carre unAutreCarre = new Carre(4,TypeSol.ARGILE,typeExposition.SUD_EST);
 		try {
 			potagerManager.ajouter(monPotager);
 		} catch (BLLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
-		unCarre.setPotager(monPotager);
-		
 		try {
-			carreManager.ajouterPlante(unCarre,unePlante,3);
+			carreManager.ajouterPlante(unCarre,tomatier,3);
 		} catch (PlantationException e) {
-			e.getMessage();
+			e.printStackTrace();
+		}
+		try {
+			carreManager.ajouterPlante(unCarre,fraisier,3);
+		} catch (PlantationException e) {
+			System.err.println(e.getMessage());
+		}
+		try {
+			potagerManager.ajouterUnCarre(monPotager, unCarre);
+		} catch (PotagerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			potagerManager.ajouterUnCarre(monPotager, unAutreCarre);
+		} catch (PotagerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			potagerManager.ajouterUnCarre(monPotager, unCarre);
+		} catch (PotagerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 	}

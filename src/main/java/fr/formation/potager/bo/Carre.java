@@ -32,10 +32,9 @@ public class Carre {
 	@Enumerated(EnumType.ORDINAL)	
 	private typeExposition typeExposition;
 
-	public Carre(Potager potager, Integer surface, TypeSol typeSol,
+	public Carre(Integer surface, TypeSol typeSol,
 			fr.formation.potager.bo.typeExposition typeExposition) {
 		super();
-		this.potager = potager;
 		this.surface = surface;
 		this.typeSol = typeSol;
 		this.typeExposition = typeExposition;

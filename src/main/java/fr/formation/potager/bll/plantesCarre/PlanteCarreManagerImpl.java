@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import fr.formation.potager.bll.BLLException;
 import fr.formation.potager.bll.Plante.PlanteManager;
+import fr.formation.potager.bll.carre.CarreException;
 import fr.formation.potager.bll.carre.CarreManager;
 import fr.formation.potager.bo.Carre;
 import fr.formation.potager.bo.Plante;
@@ -23,7 +24,7 @@ public class PlanteCarreManagerImpl implements PlanteCarreManager {
 
 	@Autowired
 	private CarreManager carreManager;
-	
+
 	@Autowired
 	private PlanteCarreDAO dao;
 
@@ -82,7 +83,34 @@ public class PlanteCarreManagerImpl implements PlanteCarreManager {
 		plantation.setDateInsert(LocalDate.now());
 		plantation.setDateRecolte(plantation.getDateInsert().plusMonths(2));
 
+		try {
+			verifierSurface(plantation);
+		} catch (CarreException e) {
+	
+			throw new PlantationException(e.getMessage());
+		}
 		ajouter(plantation);
+
+	}
+
+	private void verifierSurface(PlanteCarre plantation) throws CarreException {
+		Integer somme = plantation.getUnePlante().getSurface() * plantation.getQuantite();
+
+		Integer surfaceOccupe = dao.sommeSurfaceOccupé(plantation.getUnCarre());
+		
+		Integer total;
+		if (surfaceOccupe == null) {
+			System.out.println("total surface plante : " + somme);
+			total = somme;
+		}else {
+			total = somme+surfaceOccupe;
+			//System.out.println("surface du carre : "+plantation.getUnCarre().getSurface());
+			System.out.println("total surface occupe + les plantes : " + total);
+		}
+		if (total > plantation.getUnCarre().getSurface()) {
+			System.out.println("surface du carre : "+plantation.getUnCarre().getSurface());
+			throw new CarreException("Erreur : le carre ne peut supporte autant de plantes");
+		}
 
 	}
 
