@@ -10,7 +10,11 @@ import org.springframework.stereotype.Service;
 
 import fr.formation.potager.bll.BLLException;
 import fr.formation.potager.bll.carre.CarreManager;
+import fr.formation.potager.bll.plantesCarre.PlantationException;
+import fr.formation.potager.bll.plantesCarre.PlanteCarreManager;
 import fr.formation.potager.bo.Carre;
+import fr.formation.potager.bo.Plante;
+import fr.formation.potager.bo.PlanteCarre;
 import fr.formation.potager.bo.Potager;
 import fr.formation.potager.dal.PotagerDAO;
 
@@ -21,6 +25,10 @@ public class PotagerManagerImpl implements PotagerManager {
 	private PotagerDAO dao;
 	
 	@Autowired CarreManager carreManager;
+
+	@Autowired
+	private PlanteCarreManager PlantecarreManager;
+
 	
 	@Override
 	public void ajouter(Potager unPotager) throws PotagerException {
@@ -64,6 +72,17 @@ public class PotagerManagerImpl implements PotagerManager {
 		} catch (BLLException e) {
 			throw new PotagerException(e.getMessage());
 		}
+	}
+
+	@Override
+	public void ajouterUnePante(Carre unCarre, Plante unePlante, Integer nb) {
+		try {
+			PlantecarreManager.ajouterPlante(unCarre, unePlante, nb);
+		} catch (PlantationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }

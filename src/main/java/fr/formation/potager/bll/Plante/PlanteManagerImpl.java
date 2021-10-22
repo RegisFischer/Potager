@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import fr.formation.potager.bll.BLLException;
+import fr.formation.potager.bll.plantesCarre.PlantationException;
 import fr.formation.potager.bo.Plante;
 import fr.formation.potager.dal.PlanteDAO;
 
@@ -17,7 +19,11 @@ public class PlanteManagerImpl implements PlanteManager {
 	
 	@Override
 	public void ajouter(Plante unePlante) throws PlanteException {
-		dao.save(unePlante);
+		if (!trouverParNomEtVariete(unePlante.getNom(),unePlante.getVariete()).isEmpty()) {
+			throw new PlanteException("Erreur : cette plante existe deja dans la base!");
+		}else {		
+				dao.save(unePlante);
+		}
 
 	}
 
@@ -43,6 +49,12 @@ public class PlanteManagerImpl implements PlanteManager {
 	public List<Plante> trouvertous() {
 	
 		return (List<Plante>) dao.findAll();
+	}
+
+	@Override
+	public Optional<Plante> trouverParNomEtVariete(String nom, String variete) {
+		return dao.findByNomAndVariete(nom,variete);
+	
 	}
 
 }

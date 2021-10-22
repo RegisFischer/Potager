@@ -62,13 +62,12 @@ public class PlanteCarreManagerImpl implements PlanteCarreManager {
 	public void ajouterPlante(Carre unCarre, Plante unePlante, Integer nb) throws PlantationException {
 		PlanteCarre plantation = new PlanteCarre();
 
-		if (!planteManager.trouvertous().contains(unePlante)) {
-			try {
-				planteManager.ajouter(unePlante);
-			} catch (BLLException e) {
-				throw new PlantationException(e.getMessage());
-			}
+		try {
+			planteManager.ajouter(unePlante);
+		} catch (BLLException e1) {
+			throw new PlantationException(e1.getMessage());
 		}
+		
 		if (!carreManager.trouvertous().contains(unCarre)) {
 			try {
 				carreManager.ajouter(unCarre);
@@ -86,7 +85,6 @@ public class PlanteCarreManagerImpl implements PlanteCarreManager {
 		try {
 			verifierSurface(plantation);
 		} catch (CarreException e) {
-	
 			throw new PlantationException(e.getMessage());
 		}
 		ajouter(plantation);

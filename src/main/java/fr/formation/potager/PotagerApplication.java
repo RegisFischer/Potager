@@ -6,8 +6,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import fr.formation.potager.bll.BLLException;
-import fr.formation.potager.bll.plantesCarre.PlantationException;
-import fr.formation.potager.bll.plantesCarre.PlanteCarreManager;
 import fr.formation.potager.bll.potager.PotagerException;
 import fr.formation.potager.bll.potager.PotagerManager;
 import fr.formation.potager.bo.Carre;
@@ -23,9 +21,6 @@ public class PotagerApplication implements CommandLineRunner{
 	@Autowired
 	private PotagerManager potagerManager;
 	
-	@Autowired
-	private PlanteCarreManager carreManager;
-
 	public static void main(String[] args) {
 		SpringApplication.run(PotagerApplication.class, args);
 	}
@@ -49,16 +44,9 @@ public class PotagerApplication implements CommandLineRunner{
 			e1.printStackTrace();
 		}
 		
-		try {
-			carreManager.ajouterPlante(unCarre,tomatier,3);
-		} catch (PlantationException e) {
-			e.printStackTrace();
-		}
-		try {
-			carreManager.ajouterPlante(unCarre,fraisier,3);
-		} catch (PlantationException e) {
-			System.err.println(e.getMessage());
-		}
+		potagerManager.ajouterUnePante(unCarre,tomatier,3);
+		potagerManager.ajouterUnePante(unCarre,fraisier,2);
+/*		
 		try {
 			potagerManager.ajouterUnCarre(monPotager, unCarre);
 		} catch (PotagerException e) {
@@ -77,7 +65,7 @@ public class PotagerApplication implements CommandLineRunner{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+*/		
 	}
 
 }
