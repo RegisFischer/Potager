@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,26 +60,29 @@ public class PlanteCarreManagerImpl implements PlanteCarreManager {
 		return null;
 	}
 
+	@Transactional
 	@Override
 	public void ajouterPlante(Carre unCarre, Plante unePlante, Integer nb) throws PlantationException {
 		PlanteCarre plantation = new PlanteCarre();
 
 		try {
 			planteManager.ajouter(unePlante);
+			plantation.setUnePlante(unePlante);
 		} catch (BLLException e1) {
+
 			throw new PlantationException(e1.getMessage());
 		}
-		
-		if (!carreManager.trouvertous().contains(unCarre)) {
-			try {
-				carreManager.ajouter(unCarre);
-			} catch (BLLException e) {
-				throw new PlantationException(e.getMessage());
-			}
+
+		try {
+			carreManager.ajouter(unCarre);
+			plantation.setUnCarre(unCarre);
+		} catch (BLLException e) {
+
+			throw new PlantationException(e.getMessage());
 		}
 
-		plantation.setUnePlante(unePlante);
-		plantation.setUnCarre(unCarre);
+		
+		
 		plantation.setQuantite(nb);
 		plantation.setDateInsert(LocalDate.now());
 		plantation.setDateRecolte(plantation.getDateInsert().plusMonths(2));
@@ -85,6 +90,7 @@ public class PlanteCarreManagerImpl implements PlanteCarreManager {
 		try {
 			verifierSurface(plantation);
 		} catch (CarreException e) {
+			System.err.println(e.getMessage());
 			throw new PlantationException(e.getMessage());
 		}
 		ajouter(plantation);
@@ -95,18 +101,17 @@ public class PlanteCarreManagerImpl implements PlanteCarreManager {
 		Integer somme = plantation.getUnePlante().getSurface() * plantation.getQuantite();
 
 		Integer surfaceOccupe = dao.sommeSurfaceOccupé(plantation.getUnCarre());
-		
+
 		Integer total;
 		if (surfaceOccupe == null) {
 			System.out.println("total surface plante : " + somme);
 			total = somme;
-		}else {
-			total = somme+surfaceOccupe;
-			//System.out.println("surface du carre : "+plantation.getUnCarre().getSurface());
+		} else {
+			total = somme + surfaceOccupe;
 			System.out.println("total surface occupe + les plantes : " + total);
 		}
 		if (total > plantation.getUnCarre().getSurface()) {
-			System.out.println("surface du carre : "+plantation.getUnCarre().getSurface());
+			System.out.println("surface du carre : " + plantation.getUnCarre().getSurface());
 			throw new CarreException("Erreur : le carre ne peut supporte autant de plantes");
 		}
 

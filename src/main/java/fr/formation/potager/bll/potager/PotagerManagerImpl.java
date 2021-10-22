@@ -79,8 +79,7 @@ public class PotagerManagerImpl implements PotagerManager {
 		try {
 			PlantecarreManager.ajouterPlante(unCarre, unePlante, nb);
 		} catch (PlantationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.err.println(e.getMessage());
 		}
 		
 	}

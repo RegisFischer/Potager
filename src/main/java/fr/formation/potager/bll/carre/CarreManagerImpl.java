@@ -19,8 +19,9 @@ public class CarreManagerImpl implements CarreManager {
 
 	@Override
 	public void ajouter(Carre unCarre) throws CarreException {
-		dao.save(unCarre);
-
+		if(!trouvertous().contains(unCarre)) {
+			dao.save(unCarre);
+		}
 	}
 
 	@Override

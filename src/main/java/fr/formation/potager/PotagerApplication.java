@@ -46,7 +46,7 @@ public class PotagerApplication implements CommandLineRunner{
 		
 		potagerManager.ajouterUnePante(unCarre,tomatier,3);
 		potagerManager.ajouterUnePante(unCarre,fraisier,2);
-/*		
+	
 		try {
 			potagerManager.ajouterUnCarre(monPotager, unCarre);
 		} catch (PotagerException e) {
@@ -65,7 +65,8 @@ public class PotagerApplication implements CommandLineRunner{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-*/		
+		
+		System.out.println(potagerManager.trouvertous());
 	}
 
 }
