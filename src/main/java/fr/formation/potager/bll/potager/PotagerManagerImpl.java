@@ -14,7 +14,6 @@ import fr.formation.potager.bll.plantesCarre.PlantationException;
 import fr.formation.potager.bll.plantesCarre.PlanteCarreManager;
 import fr.formation.potager.bo.Carre;
 import fr.formation.potager.bo.Plante;
-import fr.formation.potager.bo.PlanteCarre;
 import fr.formation.potager.bo.Potager;
 import fr.formation.potager.dal.PotagerDAO;
 

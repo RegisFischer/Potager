@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fr.formation.potager.bll.Plante.PlanteManager;
 import fr.formation.potager.bo.Carre;
 import fr.formation.potager.dal.CarreDAO;
 

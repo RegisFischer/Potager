@@ -1,7 +1,6 @@
 package fr.formation.potager.bll.plantesCarre;
 
 import fr.formation.potager.bll.CrudManager;
-import fr.formation.potager.bll.carre.CarreException;
 import fr.formation.potager.bo.Carre;
 import fr.formation.potager.bo.Plante;
 import fr.formation.potager.bo.PlanteCarre;
