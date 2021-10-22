@@ -69,7 +69,6 @@ public class PlanteCarreManagerImpl implements PlanteCarreManager {
 			planteManager.ajouter(unePlante);
 			plantation.setUnePlante(unePlante);
 		} catch (BLLException e1) {
-
 			throw new PlantationException(e1.getMessage());
 		}
 
@@ -77,12 +76,9 @@ public class PlanteCarreManagerImpl implements PlanteCarreManager {
 			carreManager.ajouter(unCarre);
 			plantation.setUnCarre(unCarre);
 		} catch (BLLException e) {
-
 			throw new PlantationException(e.getMessage());
 		}
-
-		
-		
+	
 		plantation.setQuantite(nb);
 		plantation.setDateInsert(LocalDate.now());
 		plantation.setDateRecolte(plantation.getDateInsert().plusMonths(2));
@@ -97,6 +93,13 @@ public class PlanteCarreManagerImpl implements PlanteCarreManager {
 
 	}
 
+	/**
+	 * verifierSurface : permet de verifier si l'ajout de plante est possible en verifiant la surface diponible
+	 * 
+	 * @param plantation : plantation a verifier
+	 * 
+	 * @throws CarreException : retourne une exception si la surface disponible ne correspond pas
+	 */
 	private void verifierSurface(PlanteCarre plantation) throws CarreException {
 		Integer somme = plantation.getUnePlante().getSurface() * plantation.getQuantite();
 
