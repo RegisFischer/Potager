@@ -17,5 +17,7 @@ public interface PlanteCarreManager extends CrudManager<PlanteCarre>{
 	 * @throws PlantationException : retourne une exception si la surface de plant est superieur a la surface du carre
 	 */
 	void ajouterPlante(Carre unCarre, Plante unePlante,Integer nb) throws PlantationException;
+	
+	void supprimerPlante(Carre unCarre, Plante unePlante,Integer nb) throws PlantationException;
 
 }

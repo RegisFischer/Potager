@@ -13,7 +13,7 @@ import fr.formation.potager.bo.Plante;
 import fr.formation.potager.bo.Potager;
 import fr.formation.potager.bo.TypePlante;
 import fr.formation.potager.bo.TypeSol;
-import fr.formation.potager.bo.typeExposition;
+import fr.formation.potager.bo.TypeExposition;
 
 @SpringBootApplication
 public class PotagerApplication implements CommandLineRunner{
@@ -33,11 +33,12 @@ public class PotagerApplication implements CommandLineRunner{
 
 	private void testNominal() {
 		Potager monPotager = new Potager("Ecole ENI", "monPotager", 200,"Quimper");
+		Potager monAutrePotager = new Potager("The Best Potager", "monAutrePotager", 200,"Chateaulin");
 		
 		Plante tomatier = new Plante("tomatier",TypePlante.FRUIT,"Marmande",2);
 		Plante fraisier = new Plante("fraisier",TypePlante.FRUIT,"Plougastel",4);
-		Carre unCarre = new Carre(16,TypeSol.ARGILE,typeExposition.SUD_EST);
-		Carre unAutreCarre = new Carre(4,TypeSol.ARGILE,typeExposition.SUD_EST);
+		Carre unCarre = new Carre(16,TypeSol.ARGILE,TypeExposition.SUD_EST);
+		Carre unAutreCarre = new Carre(4,TypeSol.ARGILE,TypeExposition.SUD_EST);
 		try {
 			potagerManager.ajouter(monPotager);
 		} catch (BLLException e1) {

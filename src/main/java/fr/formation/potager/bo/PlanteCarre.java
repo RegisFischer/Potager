@@ -24,11 +24,11 @@ public class PlanteCarre {
 	private LocalDate dateRecolte;
 	private Integer quantite;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne()
 	@JoinColumn(name="carre_id")
 	private Carre unCarre;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne()
 	@JoinColumn(name="plante_id")
 	private Plante unePlante;
 	

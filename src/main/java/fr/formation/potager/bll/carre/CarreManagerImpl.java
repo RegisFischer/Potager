@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.formation.potager.bo.Carre;
+import fr.formation.potager.bo.Potager;
 import fr.formation.potager.dal.CarreDAO;
 
 @Service
@@ -45,6 +46,12 @@ public class CarreManagerImpl implements CarreManager {
 	public List<Carre> trouvertous() {
 		
 		return (List<Carre>) dao.findAll();
+	}
+
+	@Override
+	public List<Carre> trouverParPotager(Potager potager) {
+		
+		return dao.findByPotager(potager);
 	}
 
 
