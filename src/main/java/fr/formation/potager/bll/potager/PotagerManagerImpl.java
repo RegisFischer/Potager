@@ -47,7 +47,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	}
 
 	@Override
-	public Optional<Potager> trouverId(int id) {
+	public Optional<Potager> trouverId(Integer id) {
 		return dao.findById(id);
 	}
 

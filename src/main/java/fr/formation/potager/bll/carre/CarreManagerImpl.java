@@ -37,7 +37,7 @@ public class CarreManagerImpl implements CarreManager {
 	}
 
 	@Override
-	public Optional<Carre> trouverId(int id) {
+	public Optional<Carre> trouverId(Integer id) {
 	
 		return dao.findById(id);
 	}

@@ -1,11 +1,11 @@
 package fr.formation.potager.bll.potager;
 
-import fr.formation.potager.bll.CrudManager;
+import fr.formation.potager.bll.GestionManager;
 import fr.formation.potager.bo.Carre;
 import fr.formation.potager.bo.Plante;
 import fr.formation.potager.bo.Potager;
 
-public interface PotagerManager extends CrudManager<Potager> {
+public interface PotagerManager extends GestionManager<Potager> {
 	
 	/**
 	 * ajouterUnCarre permet d'ajouter un carre a un potager

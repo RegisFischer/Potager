@@ -49,7 +49,7 @@ public class PlanteCarreManagerImpl implements PlanteCarreManager {
 	}
 
 	@Override
-	public Optional<PlanteCarre> trouverId(int id) {
+	public Optional<PlanteCarre> trouverId(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
