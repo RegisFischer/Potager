@@ -24,6 +24,7 @@ public class Plante {
 	private TypePlante type;
 	
 	private String variete;
+
 	
 	private Integer surface;
 

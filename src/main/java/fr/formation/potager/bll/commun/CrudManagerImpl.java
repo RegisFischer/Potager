@@ -6,37 +6,41 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 
+import fr.formation.potager.bll.BLLException;
+
 public class CrudManagerImpl<E,K,D extends CrudRepository<E, K>> implements CrudManager<E, K, D> {
 
 	@Autowired
 	private D dao;
+
 	@Override
-	public void AjoutEntity(E entity) {
-		dao.save(entity);
+	public void ajouter(E t) throws BLLException {
+		dao.save(t);
 		
 	}
 
 	@Override
-	public void supprimerEntity(E entity) {
-		dao.delete(entity);
+	public void modifier(E t) throws BLLException {
+		dao.save(t);
 		
 	}
 
 	@Override
-	public void modifierEntity(E entity) {
-		dao.save(entity);
+	public void supprimer(E t) throws BLLException {
+		dao.delete(t);
 		
 	}
 
 	@Override
-	public List<E> trouvertoutEntity() {
+	public Optional<E> trouverId(K id) {
+		return dao.findById(id);
+	}
+
+	@Override
+	public List<E> trouvertous() {
 		return (List<E>) dao.findAll();
 	}
 
-	@Override
-	public Optional<E> trouverEntityParId(K id) {
-		
-		return dao.findById(id);
-	}
+
 
 }

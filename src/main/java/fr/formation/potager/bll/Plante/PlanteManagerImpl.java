@@ -38,7 +38,7 @@ public class PlanteManagerImpl implements PlanteManager {
 	}
 
 	@Override
-	public Optional<Plante> trouverId(int id) {
+	public Optional<Plante> trouverId(Integer id) {
 		
 		return dao.findById(id);
 	}

@@ -5,16 +5,21 @@ import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
 
+
 public interface CrudManager<E, K, D extends CrudRepository<E, K>>  {
 	
 	void AjoutEntity(E entity);
 
 	void supprimerEntity(E entity);
 
-	void modifierEntity(E entity);
 
-	List<E> trouvertoutEntity();
+public interface CrudManager<E, K, D extends CrudRepository<E, K>>  {
 
-	Optional<E> trouverEntityParId(K id);
+	public void ajouter(E t) throws BLLException;
+	public void modifier(E t) throws BLLException;
+	public void supprimer(E t) throws BLLException;
+	public Optional<E> trouverId(K id);
+	public List<E> trouvertous();
 
+	
 }

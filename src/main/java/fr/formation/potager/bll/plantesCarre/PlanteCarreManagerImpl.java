@@ -49,15 +49,15 @@ public class PlanteCarreManagerImpl implements PlanteCarreManager {
 	}
 
 	@Override
-	public Optional<PlanteCarre> trouverId(int id) {
+	public Optional<PlanteCarre> trouverId(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<PlanteCarre> trouvertous() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return (List<PlanteCarre>) dao.findAll();
 	}
 
 	@Transactional
@@ -118,6 +118,12 @@ public class PlanteCarreManagerImpl implements PlanteCarreManager {
 			throw new CarreException("Erreur : le carre ne peut supporte autant de plantes");
 		}
 
+	}
+
+	@Override
+	public void supprimerPlante(Carre unCarre, Plante unePlante, Integer nb) throws PlantationException {
+		
+		
 	}
 
 }

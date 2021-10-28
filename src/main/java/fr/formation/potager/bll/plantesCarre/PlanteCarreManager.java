@@ -1,11 +1,11 @@
 package fr.formation.potager.bll.plantesCarre;
 
-import fr.formation.potager.bll.CrudManager;
+import fr.formation.potager.bll.GestionManager;
 import fr.formation.potager.bo.Carre;
 import fr.formation.potager.bo.Plante;
 import fr.formation.potager.bo.PlanteCarre;
 
-public interface PlanteCarreManager extends CrudManager<PlanteCarre>{
+public interface PlanteCarreManager extends GestionManager<PlanteCarre>{
 
 	/**
 	 * ajouterPlante : permet d'ajouter une quantite nb de plantes dans un carre
@@ -17,5 +17,7 @@ public interface PlanteCarreManager extends CrudManager<PlanteCarre>{
 	 * @throws PlantationException : retourne une exception si la surface de plant est superieur a la surface du carre
 	 */
 	void ajouterPlante(Carre unCarre, Plante unePlante,Integer nb) throws PlantationException;
+	
+	void supprimerPlante(Carre unCarre, Plante unePlante,Integer nb) throws PlantationException;
 
 }
