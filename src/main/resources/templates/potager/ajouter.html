@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>ajout d'un Potager</title>
-</head>
+<section class="content-header" th:replace="common/entete.html"></section>
 <body>
+<h2>Ajouter un potager :</h2>
 <form th:action="@{/potager/ajouter}" th:object="${potager}" method="post">
     <label for="nom">Nom</label>
     <input type="text" th:field="*{nom}" id="nom" placeholder="Nom">

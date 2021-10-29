@@ -24,8 +24,9 @@ public class PotagerController {
 	CarreManager carreManager;
 	
 	@GetMapping("/potager/{id}")
-	public String  afficherPotager(@PathVariable Integer id) {
-		
+	public String  afficherPotager(@PathVariable Integer id,Model model) {
+		model.addAttribute("potager", potagerManager.trouverId(id).get());
+		model.addAttribute("carres", carreManager.trouverParPotager(potagerManager.trouverId(id).get()));
 		return "potager/afficher";
 	}
 

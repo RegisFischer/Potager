@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
+<section class="content-header" th:replace="common/entete.html"></section>
 <body>
+<h2>Modifier une plante : </h2>
 <form th:action="@{/plante/modifier/{id}(id=${plante.id})}" th:object="${plante}" method="post">
     <label for="nom">Nom</label>
     <input type="text" th:field="*{nom}" id="nom" placeholder="${plante.nom}">

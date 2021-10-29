@@ -1,10 +1,48 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Mon Potager</title>
-</head>
+<section class="content-header" th:replace="common/entete.html"></section>
 <body>
+<div class="container">
+<H2>Caractéristiques du potager</H2>
+	<table class="table" style="width:80%">
+		<thead>
+			<th>Nom</th>
+			<th>Localisation</th>
+			<th>Surface</th>
+			<th>ville</th>
+		</thead>
+		<tbody>
+		<tr>
+			<td th:text="${potager.nom}"></td>
+			<td th:text="${potager.localisation}"></td>
+			<td th:text="${potager.surface}"></td>
+			<td th:text="${potager.ville}"></td>
+		</tr>
+		
+		
+		</tbody>
+	</table>
+
+<h2>Gestion des Carrés du potager</h2>
+	<table class="table table-striped table-hover" style="width:80%">
+		<thead>
+			<th>Type du sol</th>
+			<th>Type exposition</th>
+			<th>Surface</th>
+			<th>Actions</th>
+		</thead>
+		<tbody>
+		<tr  th:each="carre : ${carres}">
+			<td th:text="${carre.typeSol}"></td>
+			<td th:text="${carre.typeExposition}"></td>
+			<td th:text="${carre.surface}"></td>
+			<td><a th:href="@{/carre/modifier/{id}(id=${carre.id})}"><button class="btn btn-primary">modifier</button></a></td>
+			<td><a th:href="@{/carre/supprimer/{id}(id=${carre.id})}"><button class="btn btn-danger">Supprimer</button></a></td>
+			<td><a th:href="@{/carre/{id}(id=${carre.id})}"><button class="btn btn-warning">Afficher</button></a></td>
+		
+	</tr>
+		</tbody>
+	</table>
+	<a href="/carre/ajouter">ajouter Un carre</a>
+</div>
 
 </body>
 </html>
