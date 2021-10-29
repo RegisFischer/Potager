@@ -29,7 +29,7 @@ public class CarreWS extends CrudWS<Carre, GestionManager<Carre>>{
 	private PotagerManager potagerManager;
 
 
-	@PostMapping("/carre/ajouter/{idPotager}")
+	@PostMapping("/ajouter/{idPotager}")
 	public List<Carre> add(@RequestBody Carre unCarre, @PathVariable Integer idPotager) {
 		Optional<Potager> retourPotager = potagerManager.trouverId(idPotager);
 		if (!retourPotager.isEmpty()) {

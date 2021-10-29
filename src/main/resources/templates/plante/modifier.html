@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form th:action="@{/plante/modifier/{id}(id=${plante.id})}" th:object="${plante}" method="post">
+    <label for="nom">Nom</label>
+    <input type="text" th:field="*{nom}" id="nom" placeholder="${plante.nom}">
+
+    <label for="surface">surface</label>
+    <input type="number" th:field="*{surface}" id="surface" placeholder="${plante.surface}">
+     <label for="variete">Variete</label>
+    <input type="text" th:field="*{variete}" id="variete" placeholder="${plante.variete}">
+    <label for="type">type</label>
+  	<select name="type">
+    	<option th:each="type : ${T(fr.formation.potager.bo.TypePlante).values()}" 
+       		th:value="${type}" th:text="${type}" th:selected="${type == plante.type}"></option>
+	</select>
+    <input type="submit" value="Modifier">   
+</form>
+</body>
+</html>

@@ -7,7 +7,7 @@ import fr.formation.potager.bll.GestionManager;
 import fr.formation.potager.bo.Potager;
 
 @RestController
-@RequestMapping("potager")
+@RequestMapping("potagers")
 public class PotagerWS extends CrudWS<Potager, GestionManager<Potager>>{
 
 }

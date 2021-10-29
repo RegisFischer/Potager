@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import fr.formation.potager.bll.BLLException;
 import fr.formation.potager.bll.GestionManager;
-
 
 public abstract class CrudWS<E,M extends GestionManager<E>> {
 	@Autowired

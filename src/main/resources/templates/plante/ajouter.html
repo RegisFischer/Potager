@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Ajout d'une Plante</title>
+</head>
+<body>
+<h2>Entrez vos informations</h2>
+<form th:action="@{/plante/ajouter}" th:object="${plante}" method="post">
+    <label for="nom">Nom</label>
+    <input type="text" th:field="*{nom}" id="nom" placeholder="Nom">
+
+    <label for="surface">surface</label>
+    <input type="number" th:field="*{surface}" id="surface" placeholder="surface">
+     <label for="variete">Variete</label>
+    <input type="text" th:field="*{variete}" id="localisation" placeholder="variete">
+     <label for="type">type</label>
+  		<select name="type">
+    		<option th:each="type : ${T(fr.formation.potager.bo.TypePlante).values()}" 
+        		th:value="${type}" th:text="${type}"></option>
+		</select>
+    <input type="submit" value="Ajouter">   
+</form>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>ajout d'un Potager</title>
+</head>
+<body>
+<form th:action="@{/potager/ajouter}" th:object="${potager}" method="post">
+    <label for="nom">Nom</label>
+    <input type="text" th:field="*{nom}" id="nom" placeholder="Nom">
+
+    <label for="surface">surface</label>
+    <input type="number" th:field="*{surface}" id="surface" placeholder="surface">
+     <label for="localisation">localisation</label>
+    <input type="text" th:field="*{localisation}" id="localisation" placeholder="localisation">
+     <label for="ville">ville</label>
+    <input type="text" th:field="*{ville}" id="ville" placeholder="ville">
+    <input type="submit" value="Ajouter le potager">   
+</form>
+</body>
+</html>
